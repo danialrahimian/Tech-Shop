@@ -1,12 +1,24 @@
-import "./App.css";
-
+import { useRoutes } from "react-router";
+import { routes } from "./routes/routes";
+import Navbar from "./Components/Navbar/Navbar";
+import { useSelector, useDispatch } from "react-redux";
+import { getNavbarLinksUrl } from "./Redux/store/navbarLinks";
+import { getNavbarSettingsUrl } from "./Redux/store/navbarSettings";
+import { useEffect } from "react";
+import type { storeType } from "./Types/storeType";
 function App() {
+  const appRoutes = useRoutes(routes);
+  const navbarLinks = useSelector((state: storeType) => state.navbarLinks);
+  const navbarSettings = useSelector((state: storeType) => state.navbarSettings);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getNavbarLinksUrl("url"));
+    dispatch(getNavbarSettingsUrl("url"));
+  });
   return (
     <>
-      {" "}
-      <div className="flex items-center justify-center h-screen bg-gray-100">
-        <h1 className="text-2xl font-bold text-blue-500">سلام Tailwind!</h1>
-      </div>
+      <Navbar navbarLinks={navbarLinks} navbarSettings={navbarSettings} />
+      {appRoutes}
     </>
   );
 }
