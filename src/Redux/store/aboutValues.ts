@@ -1,9 +1,9 @@
 import type { valueType, valuesType } from "../../Types/aboutTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
-
+const initialState: valuesType = [];
 const aboutValue = createSlice({
   name: "aboutValue",
-  initialState: [],
+  initialState,
   reducers: {
     addValue: (
       values: valuesType,
@@ -38,7 +38,7 @@ const aboutValue = createSlice({
       action: { type: string; payload: { id: number; describtion: string } }
     ) => {
       values = values.map((value) => {
-        if (values.id === action.payload.id) {
+        if (value.id === action.payload.id) {
           return {
             ...value,
             name: action.payload.describtion,

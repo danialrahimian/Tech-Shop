@@ -3,10 +3,10 @@ import type {
   homeCategoryType,
 } from "../../Types/homeTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
-
+const initialState: homeCategoriesType = [];
 const homeCategoriesSlice = createSlice({
   name: "homeCategories",
-  initialState: [],
+  initialState,
   reducers: {
     addCategory: (
       categories: homeCategoriesType,
@@ -19,7 +19,7 @@ const homeCategoriesSlice = createSlice({
       action: { type: string; payload: homeCategoryType }
     ) => {
       categories = categories.filter(
-        (category) => category.id !== action.payload.id
+        (category: homeCategoryType) => category.id !== action.payload.id
       );
       return categories;
     },

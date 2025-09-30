@@ -1,9 +1,11 @@
 import type { teamMemberType, teamMembersType } from "../../Types/aboutTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
 
+const initialState: teamMembersType = [];
+
 const aboutTeamMembers = createSlice({
   name: "aboutTeamMembers",
-  initialState: [],
+  initialState,
   reducers: {
     addTeamMember: (
       teamMembers: teamMembersType,
