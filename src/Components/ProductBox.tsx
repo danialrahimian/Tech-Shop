@@ -13,9 +13,15 @@ import {
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import type { productInfoType } from "../Types/shopTypes";
+import type { productBoxPropType } from "../Types/propTypes";
 
-export default function ProductBox({ productInfo }) {
+export default function ProductBox({
+  productInfo,
+  rating,
+  reviews,
+  sale,
+  oldPrice,
+}: productBoxPropType) {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
   const toggleFavorite = (event) => {
@@ -43,7 +49,7 @@ export default function ProductBox({ productInfo }) {
       }}
     >
       {/* Sale Badge */}
-      {productInfo.sale && (
+      {sale && (
         <Chip
           label="SALE"
           size="small"
@@ -107,7 +113,7 @@ export default function ProductBox({ productInfo }) {
       <Box sx={{ position: "relative", pt: "75%", overflow: "hidden" }}>
         <CardMedia
           component="img"
-          image={productInfo.image}
+          image={productInfo.imageUrl}
           alt={productInfo.name}
           sx={{
             position: "absolute",
@@ -137,7 +143,7 @@ export default function ProductBox({ productInfo }) {
 
         <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
           <Rating
-            value={productInfo.rating}
+            value={rating}
             precision={0.5}
             readOnly
             size="small"
@@ -151,7 +157,7 @@ export default function ProductBox({ productInfo }) {
               fontSize: "0.75rem",
             }}
           >
-            ({productInfo.reviews} reviews)
+            ({reviews} reviews)
           </Typography>
         </Box>
 
@@ -184,7 +190,7 @@ export default function ProductBox({ productInfo }) {
             >
               ${productInfo.price.toFixed(2)}
             </Typography>
-            {productInfo.sale && (
+            {sale && (
               <Typography
                 variant="body2"
                 component="span"
@@ -195,7 +201,7 @@ export default function ProductBox({ productInfo }) {
                   fontSize: "0.875rem",
                 }}
               >
-                ${productInfo.oldPrice.toFixed(2)}
+                ${oldPrice !== undefined ? oldPrice.toFixed(2) : null}
               </Typography>
             )}
           </Box>

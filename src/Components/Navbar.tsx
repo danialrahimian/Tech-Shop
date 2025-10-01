@@ -13,14 +13,16 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link, useLocation } from "react-router-dom";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import Fade from "@mui/material/Fade";
 import { useEffect, useState } from "react";
+import type { navbarPropType } from "../Types/propTypes";
 import type {
-  navbarProfileSettingsType,
+  navbarLinkType,
   navbarProfileSettingType,
-} from "../../Types/navbarTypes";
-import type { navbarLinksType, navbarLinkType } from "../../Types/navbarTypes";
-export default function Navbar({ navbarLinks, navbarSettings }) {
+} from "../Types/navbarTypes";
+export default function Navbar({
+  navbarLinks,
+  navbarSettings,
+}: navbarPropType) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [scrolled, setScrolled] = useState(false);
@@ -123,7 +125,6 @@ export default function Navbar({ navbarLinks, navbarSettings }) {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
-              TransitionComponent={Fade}
               transitionDuration={200}
             >
               {navbarLinks.map((page: navbarLinkType) => (

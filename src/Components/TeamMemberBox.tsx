@@ -6,16 +6,15 @@ import {
   Avatar,
   Typography,
 } from "@mui/material";
-import type { teamMemberType } from "../Types/aboutTypes";
+import type { teamMemberBoxPropType } from "../Types/propTypes";
 
 export default function TeamMemberBox({
-  id,
   name,
   position,
   avatar,
   bio,
   isLoaded,
-}: teamMemberType) {
+}: teamMemberBoxPropType) {
   return (
     <Grid size={{ xs: 12, sm: 6, md: 3 }}>
       <Fade in={isLoaded} timeout={1000}>

@@ -1,4 +1,4 @@
-import type { valueType } from "../Types/aboutTypes";
+import type { valueBoxPropType } from "../Types/propTypes";
 import { Grid, Fade, Card, CardContent, Box, Typography } from "@mui/material";
 
 export default function ValueBox({
@@ -7,10 +7,7 @@ export default function ValueBox({
   description,
   icon,
   isLoaded,
-}: {
-  value: valueType;
-  isLoaded: boolean;
-}) {
+}: valueBoxPropType) {
   return (
     <Grid size={{ xs: 12, sm: 6, md: 3 }} key={id}>
       <Fade in={isLoaded} timeout={1000}>

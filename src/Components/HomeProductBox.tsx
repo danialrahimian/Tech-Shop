@@ -1,4 +1,4 @@
-import type { homeProductType } from "../Types/homeProductsType";
+import type { homeProductBoxPropType } from "../Types/propTypes";
 import {
   Grid,
   Fade,
@@ -16,7 +16,7 @@ export default function HomeProductBox({
   description,
   price,
   isLoaded,
-}: homeProductType & { isLoaded: boolean }) {
+}: homeProductBoxPropType) {
   return (
     <Grid>
       <Fade in={isLoaded}>

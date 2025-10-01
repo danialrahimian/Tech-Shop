@@ -1,11 +1,11 @@
-import type { homeCategoryType } from "../Types/homeCategoryType";
+import type { categoryBoxPropType } from "../Types/propTypes";
 import { Grid, Zoom, Card, Box, Typography } from "@mui/material";
 export default function CategoryBox({
   name,
   icon,
   description,
   isLoaded,
-}: homeCategoryType & { isLoaded: boolean }) {
+}: categoryBoxPropType) {
   return (
     <Grid>
       <Zoom in={isLoaded}>
