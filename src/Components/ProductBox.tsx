@@ -24,7 +24,7 @@ export default function ProductBox({
 }: productBoxPropType) {
   const [isFavorite, setIsFavorite] = React.useState(false);
 
-  const toggleFavorite = (event) => {
+  const toggleFavorite = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setIsFavorite(!isFavorite);
   };
