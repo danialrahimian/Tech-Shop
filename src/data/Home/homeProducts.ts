@@ -1,10 +1,11 @@
-import type { homeProductsType } from "../../Types/homeProductsType";
+import type { homeProductsType } from "../../Types/homeTypes";
 export const homeProducts: homeProductsType = [
   {
     id: 1,
     name: "MacBook Pro 16",
     description: "Apple M1 Max, 32GB RAM, 1TB SSD",
-    image: "https://source.unsplash.com/random/600x400/?macbook",
+    image:
+      "https://unsplash.com/photos/silver-macbook-on-white-table-Hin-rzhOdWs",
     price: 2499,
   },
   {

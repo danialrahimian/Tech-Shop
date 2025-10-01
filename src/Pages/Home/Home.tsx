@@ -18,6 +18,7 @@ import type { homeProductType } from "../../Types/homeTypes";
 import type { storeType } from "../../Types/storeType";
 import CategoryBox from "../../Components/CategoryBox";
 import HomeProductBox from "../../Components/HomeProductBox";
+import { useNavigate } from "react-router";
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,7 +27,7 @@ export default function Home() {
     (state: storeType) => state.homeCategories
   );
   const homeProducts = useSelector((state: storeType) => state.homeProducts);
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getCategoryUrl("url"));
     dispatch(getProductUrl("url"));
@@ -94,6 +95,7 @@ export default function Home() {
                 }}
               >
                 <Button
+                  onClick={() => navigate("/shop")}
                   variant="contained"
                   size="large"
                   startIcon={<ShoppingCartIcon />}
@@ -116,6 +118,7 @@ export default function Home() {
                   Shop Now
                 </Button>
                 <Button
+                  onClick={() => navigate("/about")}
                   variant="outlined"
                   size="large"
                   endIcon={<ArrowForwardIcon />}
@@ -201,6 +204,7 @@ export default function Home() {
 
           <Box sx={{ textAlign: "center", mt: 4 }}>
             <Button
+              onClick={() => navigate("/shop")}
               variant="outlined"
               endIcon={<ArrowForwardIcon />}
               sx={{
