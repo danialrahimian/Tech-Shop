@@ -1,10 +1,11 @@
 import { categories } from "../../data/Home/homeCategories";
-import { getAllCategory } from "../store/homeCategories";
-import { getCategoryUrl } from "../store/homeCategories";
-export const getHomeCategory = (state) => (next) => (action) => {
+import { getAllCategory, getCategoryUrl } from "../store/homeCategories";
+import type { Middleware } from "@reduxjs/toolkit";
+
+export const getHomeCategory: Middleware = (state) => (next) => (action) => {
   const result = next(action);
 
-  if (action.type === getCategoryUrl.type && categories.length) {
+  if (getCategoryUrl.match(action) && categories.length) {
     state.dispatch(getAllCategory(categories));
   }
   return result;

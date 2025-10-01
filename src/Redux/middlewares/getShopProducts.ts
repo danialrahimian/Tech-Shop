@@ -1,10 +1,10 @@
 import { shopDatas } from "../../data/shop/productsInfo";
-import { getAllProducts } from "../store/shopProducts";
-import { getProductUrl } from "../store/homeProducts";
+import { getAllProducts, getProductUrl } from "../store/shopProducts";
+import type { Middleware } from "@reduxjs/toolkit";
 
-export const getShopProducts = (state) => (next) => (action) => {
+export const getShopProducts: Middleware = (state) => (next) => (action) => {
   const result = next(action);
-  if (action.type === getProductUrl.type) {
+  if (getProductUrl.match(action) && shopDatas.length) {
     state.dispatch(getAllProducts(shopDatas));
   } else {
     return state;

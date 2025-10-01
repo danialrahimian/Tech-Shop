@@ -1,11 +1,15 @@
+import type { Middleware } from "@reduxjs/toolkit";
 import { teamMembers } from "../../data/About/about";
-import { getAllTeamMember } from "../store/aboutTeamMembers";
-import { getTeamMemberUrl } from "../store/aboutTeamMembers";
-export const getAboutTeamMembers = (state) => (next) => (action) => {
-  const result = next(action);
+import { getAllTeamMember, getTeamMemberUrl } from "../store/aboutTeamMembers";
 
-  if (action.type === getTeamMemberUrl.type && teamMembers.length) {
-    state.dispatch(getAllTeamMember(teamMembers));
-  }
-  return result;
-};
+export const getAboutTeamMembers: Middleware =
+  (store) => (next) => (action) => {
+    const result = next(action);
+
+    // اگر این اکشن از نوع getTeamMemberUrl بود (match type-safe)
+    if (getTeamMemberUrl.match(action) && teamMembers.length) {
+      store.dispatch(getAllTeamMember(teamMembers));
+    }
+
+    return result;
+  };

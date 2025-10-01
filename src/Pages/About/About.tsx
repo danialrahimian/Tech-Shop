@@ -201,7 +201,6 @@ export default function About() {
         <Grid container spacing={4}>
           {teamMembers.map((member: teamMemberType) => (
             <TeamMemberBox
-              id={member.id}
               name={member.name}
               position={member.position}
               avatar={member.avatar}

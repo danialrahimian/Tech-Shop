@@ -19,7 +19,7 @@ import {
   Fade,
   CircularProgress,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import CloseIcon from "@mui/icons-material/Close";
@@ -34,14 +34,17 @@ import type { productsInfoType, productInfoType } from "../../Types/shopTypes";
 export default function Shop() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [priceRange, setPriceRange] = useState([0, 1500]);
-  const [sortBy, setSortBy] = useState("featured");
-  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState<productsInfoType>(
+    []
+  );
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [priceRange, setPriceRange] = useState<number[]>([0, 1500]);
+  const [sortBy, setSortBy] = useState<string>("featured");
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
+  dispatch(getProductUrl("url"));
   // Extract unique brands
   const products: productsInfoType = useSelector(
     (state: storeType) => state.shopProducts
@@ -51,9 +54,7 @@ export default function Shop() {
       products.map((product: productInfoType) => product.name.split(" ")[0])
     ),
   ];
-
   useEffect(() => {
-    dispatch(getProductUrl("url"));
     // Simulate loading delay for animation
     setTimeout(() => {
       setIsLoading(false);
@@ -65,7 +66,7 @@ export default function Shop() {
   }, [searchTerm, priceRange, sortBy, selectedBrands]);
 
   const applyFilters = () => {
-    let result = [...products];
+    let result: productsInfoType = [...products];
 
     // Filter by search term
     if (searchTerm) {
@@ -103,11 +104,11 @@ export default function Shop() {
     setFilteredProducts(result);
   };
 
-  const handlePriceChange = (event, newValue) => {
+  const handlePriceChange = (event: Event, newValue: number[]) => {
     setPriceRange(newValue);
   };
 
-  const handleBrandSelection = (brand) => {
+  const handleBrandSelection = (brand: string) => {
     if (selectedBrands.includes(brand)) {
       setSelectedBrands(selectedBrands.filter((b) => b !== brand));
     } else {
@@ -122,7 +123,7 @@ export default function Shop() {
     setSelectedBrands([]);
   };
 
-  const toggleDrawer = (open) => {
+  const toggleDrawer = (open: boolean) => {
     setDrawerOpen(open);
   };
 
@@ -199,7 +200,7 @@ export default function Shop() {
           Brands
         </Typography>
         <Box display="flex" flexWrap="wrap" gap={1} sx={{ maxWidth: "200px" }}>
-          {brands.map((brand) => (
+          {brands.map((brand: string) => (
             <Chip
               key={brand}
               label={brand}

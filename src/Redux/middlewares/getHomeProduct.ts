@@ -1,12 +1,13 @@
 import { homeProducts } from "../../data/Home/homeProducts";
-import { getProduct } from "../store/homeProducts";
-import { getProductUrl } from "../store/homeProducts";
-export const getHomeProduct = (state) => (next) => (action) => {
+import { getProduct, getProductUrl } from "../store/homeProducts";
+import type { Middleware } from "@reduxjs/toolkit";
+
+export const getHomeProduct: Middleware = (state) => (next) => (action) => {
   const result = next(action);
 
-  if (action.type === getProductUrl.type && homeProducts.length) {
+  if (getProductUrl.match(action) && homeProducts.length) {
     state.dispatch(getProduct(homeProducts));
   }
-  
+
   return result;
 };

@@ -1,10 +1,11 @@
 import { values } from "../../data/About/about";
-import { getAllValue } from "../store/aboutValues";
-import { getValuesUrl } from "../store/aboutValues";
-export const getAboutValues = (state) => (next) => (action) => {
+import { getAllValue ,getValuesUrl } from "../store/aboutValues";
+import type { Middleware } from "@reduxjs/toolkit";
+
+export const getAboutValues: Middleware = (state) => (next) => (action) => {
   const result = next(action);
 
-  if (action.type === getValuesUrl.type && values.length) {
+  if (getValuesUrl.match(action) && values.length) {
     state.dispatch(getAllValue(values));
   }
   return result;

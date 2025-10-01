@@ -1,13 +1,18 @@
-import { getNavbarSettingsUrl } from "../store/navbarSettings";
-import { getAllNavbarSettings } from "../store/navbarSettings";
-import { navbarProfileSettings } from "../../data/Navbar/navbarData";
+import {
+  getNavbarSettingsUrl,
+  getAllNavbarSettings,
+} from "../store/navbarSettings";
 
-export const getNavbarSettingsText = (state) => (next) => (action) => {
-  const result = next(action);
-  if (action.type === getNavbarSettingsUrl.type) {
-    state.dispatch(getAllNavbarSettings(navbarProfileSettings));
-  } else {
-    return state;
-  }
-  return result;
-};
+import { navbarProfileSettings } from "../../data/Navbar/navbarData";
+import type { Middleware } from "@reduxjs/toolkit";
+
+export const getNavbarSettingsText: Middleware =
+  (state) => (next) => (action) => {
+    const result = next(action);
+    if (getNavbarSettingsUrl.match(action) && navbarProfileSettings.length) {
+      state.dispatch(getAllNavbarSettings(navbarProfileSettings));
+    } else {
+      return state;
+    }
+    return result;
+  };

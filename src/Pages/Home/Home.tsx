@@ -160,7 +160,6 @@ export default function Home() {
         <Grid container spacing={3} justifyContent="center">
           {homeCategories.map((category: homeCategoryType) => (
             <CategoryBox
-              id={category.id}
               name={category.name}
               icon={category.icon}
               description={category.description}
@@ -190,12 +189,11 @@ export default function Home() {
           <Grid container spacing={3}>
             {homeProducts.map((product: homeProductType) => (
               <HomeProductBox
-                id={product.id}
                 name={product.name}
                 image={product.image}
                 description={product.description}
                 price={product.price}
-                isLoaded={isLoaded}
+                isLoaded
                 key={product.id}
               />
             ))}
