@@ -91,9 +91,10 @@ export default function Contact() {
   };
 
   const handleClose = (
-    event: SyntheticEvent | Event,
+    _e: SyntheticEvent | Event,
     reason: SnackbarCloseReason
   ) => {
+    void _e;
     if (reason === "clickaway") {
       return;
     }

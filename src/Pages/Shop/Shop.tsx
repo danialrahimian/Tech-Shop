@@ -104,7 +104,7 @@ export default function Shop() {
     setFilteredProducts(result);
   };
 
-  const handlePriceChange = (event: Event, newValue: number[]) => {
+  const handlePriceChange = (_event: Event, newValue: number[]) => {
     setPriceRange(newValue);
   };
 

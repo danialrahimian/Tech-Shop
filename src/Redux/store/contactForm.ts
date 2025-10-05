@@ -29,10 +29,11 @@ const contactFormSlice = createSlice({
 
 export const startValidateForm = createAction(
   "startValidateForm",
-  function prepare(trigger: string) {
+  function prepare({ name, value }: changeFormType) {
     return {
       payload: {
-        trigger,
+        name,
+        value,
       },
     };
   }
