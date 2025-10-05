@@ -1,13 +1,19 @@
-import type { formType } from "../../Types/contactTypes";
+import type { formType, changeFormType } from "../../Types/contactTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
+const initialState: formType = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 const contactFormSlice = createSlice({
   name: "contactFormSlice",
-  initialState: {},
+  initialState,
   reducers: {
     changeFormValue: (
       FormValue: formType,
-      action: { type: string; payload: { name: string; value: string } }
+      action: { type: string; payload: changeFormType }
     ) => {
       for (const key in FormValue) {
         if (key === action.payload.name) {

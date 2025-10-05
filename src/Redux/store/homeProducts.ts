@@ -1,11 +1,11 @@
-import type {
-  homeProductType,
-  homeProductsType,
-} from "../../Types/homeTypes";
+import type { homeProductType, homeProductsType } from "../../Types/homeTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
+
+const initialState: homeProductsType = [];
+
 const homeProductsSlice = createSlice({
   name: "homeProducts",
-  initialState: [],
+  initialState,
   reducers: {
     addProduct: (
       products: homeProductsType,

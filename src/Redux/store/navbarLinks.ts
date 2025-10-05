@@ -1,9 +1,10 @@
 import type { navbarLinkType, navbarLinksType } from "../../Types/navbarTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
+const initialState: navbarLinksType = [];
 
 const navbarLinksSlice = createSlice({
   name: "navbarLinksSlice",
-  initialState: [],
+  initialState,
   reducers: {
     addNavbarLink: (
       navbarLinks: navbarLinksType,

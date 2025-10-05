@@ -1,4 +1,3 @@
-import React from "react";
 import type { routesType } from "../Types/routesType";
 import Home from "../Pages/Home/Home";
 import About from "../Pages/About/About";

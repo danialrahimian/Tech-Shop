@@ -3,7 +3,9 @@ import type {
   homeCategoryType,
 } from "../../Types/homeTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
+
 const initialState: homeCategoriesType = [];
+
 const homeCategoriesSlice = createSlice({
   name: "homeCategories",
   initialState,

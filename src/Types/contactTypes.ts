@@ -10,3 +10,8 @@ export type errorType = {
   subject?: string;
   message?: string;
 };
+
+export type changeFormType = {
+  name: string;
+  value: string;
+};

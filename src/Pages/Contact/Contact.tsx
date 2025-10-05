@@ -1,4 +1,10 @@
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  type FormEvent,
+  type ChangeEvent,
+  type SyntheticEvent,
+} from "react";
 import {
   Box,
   Container,
@@ -13,6 +19,7 @@ import {
   Snackbar,
   Alert,
 } from "@mui/material";
+import type { SnackbarCloseReason } from "@mui/material/Snackbar";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -35,13 +42,18 @@ export default function Contact() {
   });
 
   // Form validation
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<{
+    name?: string;
+    email?: string;
+    subject?: string;
+    message?: string;
+  }>();
 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormState({
       ...formState,
@@ -50,7 +62,7 @@ export default function Contact() {
     console.log(formState);
 
     // Clear error when user types
-    if (errors[name]) {
+    if (errors?.name) {
       setErrors({
         ...errors,
         [name]: "",
@@ -58,7 +70,7 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     if (formValidator(formState)) {
@@ -78,7 +90,10 @@ export default function Contact() {
     }
   };
 
-  const handleClose = (event, reason) => {
+  const handleClose = (
+    event: SyntheticEvent | Event,
+    reason: SnackbarCloseReason
+  ) => {
     if (reason === "clickaway") {
       return;
     }
@@ -296,8 +311,8 @@ export default function Contact() {
                       name="name"
                       value={formState.name}
                       onChange={handleInputChange}
-                      error={!!errors.name}
-                      helperText={errors.name}
+                      error={!!errors?.name}
+                      helperText={errors?.name}
                       size="small"
                       sx={{
                         "& .MuiOutlinedInput-root": {
@@ -320,8 +335,8 @@ export default function Contact() {
                       type="email"
                       value={formState.email}
                       onChange={handleInputChange}
-                      error={!!errors.email}
-                      helperText={errors.email}
+                      error={!!errors?.email}
+                      helperText={errors?.email}
                       size="small"
                       sx={{
                         "& .MuiOutlinedInput-root": {
@@ -343,8 +358,8 @@ export default function Contact() {
                       name="subject"
                       value={formState.subject}
                       onChange={handleInputChange}
-                      error={!!errors.subject}
-                      helperText={errors.subject}
+                      error={!!errors?.subject}
+                      helperText={errors?.subject}
                       size="small"
                       sx={{
                         "& .MuiOutlinedInput-root": {
@@ -368,8 +383,8 @@ export default function Contact() {
                       rows={4}
                       value={formState.message}
                       onChange={handleInputChange}
-                      error={!!errors.message}
-                      helperText={errors.message}
+                      error={!!errors?.message}
+                      helperText={errors?.message}
                       sx={{
                         "& .MuiOutlinedInput-root": {
                           borderRadius: 1,
@@ -446,7 +461,6 @@ export default function Contact() {
               width="100%"
               height="100%"
               style={{ border: 0 }}
-              allowFullScreen=""
               loading="lazy"
               title="Our Location"
             />
@@ -456,12 +470,7 @@ export default function Contact() {
 
       {/* Success Snackbar */}
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: "100%" }}
-        >
+        <Alert severity="success" variant="filled" sx={{ width: "100%" }}>
           Message sent successfully! We'll get back to you soon.
         </Alert>
       </Snackbar>

@@ -1,9 +1,10 @@
 import type { productsInfoType, productInfoType } from "../../Types/shopTypes";
 import { createAction, createSlice } from "@reduxjs/toolkit";
+const initialState: productsInfoType = [];
 
 const shopProductsSlice = createSlice({
   name: "homeProducts",
-  initialState: [],
+  initialState,
   reducers: {
     addProduct: (
       products: productsInfoType,

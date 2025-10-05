@@ -4,9 +4,11 @@ import type {
 } from "../../Types/navbarTypes";
 import { createSlice, createAction } from "@reduxjs/toolkit";
 
+const initialState: navbarProfileSettingsType = [];
+
 const navbarSettingsSlice = createSlice({
   name: "navbarSettingsSlice",
-  initialState: [],
+  initialState,
   reducers: {
     addNavbarSettings: (
       navbarSettings: navbarProfileSettingsType,
