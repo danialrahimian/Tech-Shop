@@ -96,7 +96,7 @@ export default function Navbar({
               textDecoration: "none",
             }}
           >
-            SHOPIFYasdasd
+            SHOPIFY
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
